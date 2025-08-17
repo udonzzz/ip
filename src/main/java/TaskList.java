@@ -6,7 +6,7 @@ public class TaskList {
     public TaskList() {
         this.list = new ArrayList<String>();
     }
-    
+
     void addTask(String task) {
         list.add(task);
     }
@@ -15,7 +15,7 @@ public class TaskList {
     public String toString() {
         String output = "";
         for (int i = 0; i < list.size(); i++) {
-            output += Integer.toString(i + 1) + list.get(i) + "\n";
+            output += Integer.toString(i + 1) + ". " + list.get(i) + "\n";
         }
         return output;
     }
