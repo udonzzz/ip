@@ -5,13 +5,13 @@ public class Event extends Task {
 
     public Event(String description, String start, String end) {
         super(description);
-        this.status = "[E]";
+        this.type = "[E]";
         this.start = start;
         this.end = end;
     }
 
     @Override
     public String toString() {
-        return type + super.toString() + "(from: " + start + " to: "  + end + ")";
+        return type + super.toString() + " (from: " + start + " to: "  + end + ")";
     }
 }
