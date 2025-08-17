@@ -1,7 +1,7 @@
 public class ToDo extends Task {
     protected String type;
 
-    public Todo(String description) {
+    public ToDo(String description) {
         super(description);
         this.type = "[T]";
     }
