@@ -20,6 +20,7 @@ public class Panda {
         generateLines();
         System.out.println("Hello I'm " + NAME + "\nWhat can I do for you?");
         generateLines();
+        programLoop:
         while (true) {
             String input = scanner.nextLine();
             String[] strArray = input.split(" ", 2);
@@ -27,20 +28,20 @@ public class Panda {
             switch (action) {
                 case "bye":
                     reply("Bye. Hope to see you again soon!");
-                    break;
+                    break programLoop;
                 case "list":
                     reply(tasks);
-                    continue;
+                    break;
                 case "mark":
                     tasks.changeStatus(strArray[1]);
                     reply("Nice! I've marked this task as done:\n  "
                             + tasks.getTask(strArray[1]));
-                    continue;
+                    break;
                 case "unmark":
                     tasks.changeStatus(strArray[1]);
                     reply("Okay, I've marked this task as not done yet:\n  "
                             + tasks.getTask(strArray[1]));
-                    continue;
+                    break;
                 default:
                     tasks.addTask(input);
                     reply("added: " + input);
