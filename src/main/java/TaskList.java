@@ -27,7 +27,7 @@ public class TaskList {
     public String toString() {
         String output = "";
         for (int i = 0; i < list.size(); i++) {
-            output += Integer.toString(i + 1) + ". " + list.get(i).toString() + "\n";
+            output += Integer.toString(i + 1) + "." + list.get(i).toString() + "\n";
         }
         return output;
     }
