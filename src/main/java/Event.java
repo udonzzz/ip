@@ -9,9 +9,9 @@ public class Event extends Task {
         this.start = start;
         this.end = end;
     }
-    
+
     @Override
     public String toString() {
-        return type + status + " " + description + "(from: " + start + " to: "  + end + ")";
+        return type + super.toString() + "(from: " + start + " to: "  + end + ")";
     }
 }
