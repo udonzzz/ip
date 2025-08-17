@@ -22,7 +22,7 @@ public class Panda {
         generateLines();
         while (true) {
             String input = scanner.nextLine();
-            String[] strArray = input.split(" ", 1);
+            String[] strArray = input.split(" ", 2);
             String action = strArray[0];
             switch (action) {
                 case "bye":
@@ -33,17 +33,17 @@ public class Panda {
                     continue;
                 case "mark":
                     tasks.changeStatus(strArray[1]);
-                    reply("Nice! I've marked this task as done:");
-                    reply("  " + tasks.getTask(strArray[1]));
+                    reply("Nice! I've marked this task as done:\n  "
+                            + tasks.getTask(strArray[1]));
                     continue;
                 case "unmark":
                     tasks.changeStatus(strArray[1]);
-                    reply("Okay, I've marked this task as not done yet:");
-                    reply("  " + tasks.getTask(strArray[1]));
+                    reply("Okay, I've marked this task as not done yet:\n  "
+                            + tasks.getTask(strArray[1]));
                     continue;
                 default:
                     tasks.addTask(input);
-                    reply("added: " + input)
+                    reply("added: " + input);
             }
         }
     }
