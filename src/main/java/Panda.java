@@ -18,7 +18,6 @@ public class Panda {
         Scanner scanner = new Scanner(System.in);
         TaskList tasks = new TaskList();
         String taskAdded = "Got it. I've added this task: \n  ";
-        String numTasks = "Now you have " + tasks.size() + " in the list.";
         generateLines();
         System.out.println("Hello I'm " + NAME + "\nWhat can I do for you?");
         generateLines();
@@ -47,19 +46,22 @@ public class Panda {
                 case "todo":
                     Task todo = new ToDo(strArray[1]);
                     tasks.addTask(todo);
-                    reply(taskAdded + todo + numTasks);
+                    reply(taskAdded + todo + "\nNow you have "
+                            + tasks.size() +  " tasks in the list.");
                     break;
                 case "deadline":
                     String[] infoDeadline = strArray[1].split(" /by ");
                     Task deadline = new Deadline(infoDeadline[0], infoDeadline[1]);
                     tasks.addTask(deadline);
-                    reply(taskAdded + deadline + numTasks);
+                    reply(taskAdded + deadline + "\nNow you have "
+                            + tasks.size() +  " tasks in the list.");
                     break;
                 case "event":
                     String[] infoEvent = strArray[1].split(" /from | /to ");
                     Task event = new Event(infoEvent[0], infoEvent[1], infoEvent[2]);
                     tasks.addTask(event);
-                    reply(taskAdded + event + numTasks);
+                    reply(taskAdded + event + "\nNow you have "
+                            + tasks.size() +  " tasks in the list.");
                     break;
             }
         }
