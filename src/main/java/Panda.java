@@ -14,8 +14,15 @@ public class Panda {
         generateLines();
     }
 
+    private static void reply(TaskList tasks) {
+        generateLines();
+        System.out.println(tasks);
+        generateLines();
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        TaskList tasks = new TaskList();
         generateLines();
         System.out.println("Hello I'm " + NAME + "\nWhat can I do for you?");
         generateLines();
@@ -24,8 +31,12 @@ public class Panda {
             if (input.equals("bye")) {
                 reply("Bye. Hope to see you again soon!");
                 break;
+            } else if (input.equals("list")) {
+                reply(tasks);
+                continue;
             }
-            reply(input);
+            tasks.addTask(input);
+            reply("added: " + input);
         }
     }
 }
