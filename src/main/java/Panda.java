@@ -17,6 +17,8 @@ public class Panda {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         TaskList tasks = new TaskList();
+        String taskAdded = "Got it. I've added this task: \n  ";
+        String numTasks = "Now you have " + tasks.size() + " in the list.";
         generateLines();
         System.out.println("Hello I'm " + NAME + "\nWhat can I do for you?");
         generateLines();
@@ -42,9 +44,23 @@ public class Panda {
                     reply("Okay, I've marked this task as not done yet:\n  "
                             + tasks.getTask(strArray[1]));
                     break;
-                default:
-                    tasks.addTask(input);
-                    reply("added: " + input);
+                case "todo":
+                    Task todo = new ToDo(strArray[1]);
+                    tasks.addTask(todo);
+                    reply(taskAdded + todo + numTasks);
+                    break;
+                case "deadline":
+                    String[] infoDeadline = strArray[1].split(" /by ");
+                    Task deadline = new Deadline(infoDeadline[0], infoDeadline[1]);
+                    tasks.addTask(deadline);
+                    reply(taskAdded + deadline + numTasks);
+                    break;
+                case "event":
+                    String[] infoEvent = strArray[1].split(" /from | /to ");
+                    Task event = new Event(infoEvent[0], infoEvent[1], infoEvent[2]);
+                    tasks.addTask(event);
+                    reply(taskAdded + event + numTasks);
+                    break;
             }
         }
     }
