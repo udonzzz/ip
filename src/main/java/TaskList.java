@@ -11,6 +11,18 @@ public class TaskList {
         list.add(new Task(description));
     }
 
+    void changeStatus(String number) {
+        list[index(number)].changeStatus();
+    }
+
+    Task getTask(String number) {
+        return list.get(index(number));
+    }
+
+    int index(String number) {
+        return Integer.parseInt(number) - 1;
+    }
+
     @Override
     public String toString() {
         String output = "";
