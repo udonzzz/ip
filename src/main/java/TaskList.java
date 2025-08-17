@@ -7,8 +7,8 @@ public class TaskList {
         this.list = new ArrayList<Task>();
     }
 
-    void addTask(String description) {
-        list.add(new Task(description));
+    void addTask(Task task) {
+        list.add(task);
     }
 
     void changeStatus(String number) {
@@ -21,6 +21,10 @@ public class TaskList {
 
     int index(String number) {
         return Integer.parseInt(number) - 1;
+    }
+
+    int size() {
+        return list.size();
     }
 
     @Override
