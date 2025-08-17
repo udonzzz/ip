@@ -8,15 +8,9 @@ public class Panda {
         System.out.println("\n" + LINES);
     }
 
-    private static void reply(String output) {
+    private static <T> void reply(T message) {
         generateLines();
-        System.out.println(output);
-        generateLines();
-    }
-
-    private static void reply(TaskList tasks) {
-        generateLines();
-        System.out.println(tasks);
+        System.out.println(message);
         generateLines();
     }
 
@@ -28,15 +22,29 @@ public class Panda {
         generateLines();
         while (true) {
             String input = scanner.nextLine();
-            if (input.equals("bye")) {
-                reply("Bye. Hope to see you again soon!");
-                break;
-            } else if (input.equals("list")) {
-                reply(tasks);
-                continue;
+            String[] strArray = input.split(" ", 1);
+            String action = strArray[0];
+            switch (action) {
+                case "bye":
+                    reply("Bye. Hope to see you again soon!");
+                    break;
+                case "list":
+                    reply(tasks);
+                    continue;
+                case "mark":
+                    tasks.changeStatus(strArray[1]);
+                    reply("Nice! I've marked this task as done:");
+                    reply("  " + tasks.getTask(strArray[1]));
+                    continue;
+                case "unmark":
+                    tasks.changeStatus(strArray[1]);
+                    reply("Okay, I've marked this task as not done yet:");
+                    reply("  " + tasks.getTask(strArray[1]));
+                    continue;
+                default:
+                    tasks.addTask(input);
+                    reply("added: " + input)
             }
-            tasks.addTask(input);
-            reply("added: " + input);
         }
     }
 }
