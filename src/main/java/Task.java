@@ -7,10 +7,10 @@ public class Task {
         this.status = "[ ]";
     }
 
-    void changeStatus(String input) {
-        if (input.equals("mark")) {
+    void changeStatus() {
+        if (status.equals("[ ]")) {
             status = "[X]";
-        } else if (input.equals("unmark")) {
+        } else {
             status = "[ ]";
         }
     }

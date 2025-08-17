@@ -12,7 +12,7 @@ public class TaskList {
     }
 
     void changeStatus(String number) {
-        list[index(number)].changeStatus();
+        list.get(index(number)).changeStatus();
     }
 
     Task getTask(String number) {
