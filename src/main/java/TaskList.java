@@ -11,8 +11,8 @@ public class TaskList {
         list.add(task);
     }
 
-    void changeStatus(String number) {
-        list.get(index(number)).changeStatus();
+    void changeStatus(String number, String action) {
+        list.get(index(number)).changeStatus(action);
     }
 
     Task getTask(String number) {

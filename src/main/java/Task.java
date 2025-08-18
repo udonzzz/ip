@@ -7,8 +7,8 @@ public class Task {
         this.status = "[ ]";
     }
 
-    void changeStatus() {
-        if (status.equals("[ ]")) {
+    void changeStatus(String action) {
+        if (action.equals("mark")) {
             status = "[X]";
         } else {
             status = "[ ]";

@@ -26,12 +26,12 @@ public class Panda {
                     reply(tasks);
                     break;
                 case "mark":
-                    tasks.changeStatus(strArray[1]);
+                    tasks.changeStatus(strArray[1], action);
                     reply("Nice! I've marked this task as done:\n  "
                             + tasks.getTask(strArray[1]));
                     break;
                 case "unmark":
-                    tasks.changeStatus(strArray[1]);
+                    tasks.changeStatus(strArray[1], action);
                     reply("Okay, I've marked this task as not done yet:\n  "
                             + tasks.getTask(strArray[1]));
                     break;
