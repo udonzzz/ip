@@ -2,25 +2,17 @@ import java.util.Scanner;
 
 public class Panda {
     private static final String NAME = "Panda";
-    private static final String LINES = "-".repeat(50);
-
-    private static void generateLines() {
-        System.out.println("\n" + LINES);
-    }
+    private static final String LINES = "_".repeat(50) + "\n";
 
     private static <T> void reply(T message) {
-        generateLines();
-        System.out.println(message);
-        generateLines();
+        System.out.println(LINES + message + "\n" + LINES);
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         TaskList tasks = new TaskList();
         String taskAdded = "Got it. I've added this task: \n  ";
-        generateLines();
-        System.out.println("Hello I'm " + NAME + "\nWhat can I do for you?");
-        generateLines();
+        reply("Hello I'm " + NAME + "\nWhat can I do for you?");
         programLoop:
         while (true) {
             String input = scanner.nextLine();
