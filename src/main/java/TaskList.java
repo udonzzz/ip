@@ -11,8 +11,12 @@ public class TaskList {
         list.add(task);
     }
 
-    void changeStatus(String number, String action) {
-        list.get(index(number)).changeStatus(action);
+    void changeStatus(String number, String action) throws PandaException {
+        try {
+            list.get(index(number)).changeStatus(action);
+        } catch (NumberFormatException e) {
+            throw new PandaException(action, "");
+        }
     }
 
     Task getTask(String number) {
