@@ -35,20 +35,23 @@ public class Panda {
                     throw new PandaException(action, "");
                 }
                 if (action.equals("mark")) {
-                    tasks.changeStatus(strArray[1], action);
-                    reply("Nice! I've marked this task as done:\n  "
-                            + tasks.getTask(strArray[1]));
+                    Task task = tasks.changeStatus(strArray[1], action);
+                    reply("Nice! I've marked this task as done:\n  " + task);
                     continue;
                 }
                 if (action.equals("unmark")) {
-                    tasks.changeStatus(strArray[1], action);
-                    reply("Okay, I've marked this task as not done yet:\n  "
-                            + tasks.getTask(strArray[1]));
+                    Task task = tasks.changeStatus(strArray[1], action);
+                    reply("Okay, I've marked this task as not done yet:\n  " + task);
+                    continue;
+                }
+                if (action.equals("delete")) {
+                    Task task = tasks.deleteTask(strArray[1]);
+                    reply("Noted. I've removed this task:\n  " + task + "\nNow you have "
+                            + tasks.size() + " tasks in the list.");
                     continue;
                 }
                 if (action.equals("todo")) {
-                    Task todo = new ToDo(strArray[1]);
-                    tasks.addTask(todo);
+                    Task todo = tasks.addTask(new ToDo(strArray[1]));
                     reply(taskAdded + todo + "\nNow you have "
                             + tasks.size() + " tasks in the list.");
                     continue;
@@ -58,8 +61,7 @@ public class Panda {
                     if (arraySizeWrong(infoDeadline, 2)) {
                         throw new PandaException(action, infoDeadline[0]);
                     }
-                    Task deadline = new Deadline(infoDeadline[0], infoDeadline[1]);
-                    tasks.addTask(deadline);
+                    Task deadline = tasks.addTask(new Deadline(infoDeadline[0], infoDeadline[1]));
                     reply(taskAdded + deadline + "\nNow you have "
                             + tasks.size() + " tasks in the list.");
                     continue;
@@ -69,8 +71,7 @@ public class Panda {
                     if (arraySizeWrong(infoEvent, 3)) {
                         throw new PandaException(action, infoEvent[0]);
                     }
-                    Task event = new Event(infoEvent[0], infoEvent[1], infoEvent[2]);
-                    tasks.addTask(event);
+                    Task event = tasks.addTask(new Event(infoEvent[0], infoEvent[1], infoEvent[2]));
                     reply(taskAdded + event + "\nNow you have "
                             + tasks.size() + " tasks in the list.");
                     continue;
