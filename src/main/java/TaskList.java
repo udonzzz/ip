@@ -7,20 +7,29 @@ public class TaskList {
         this.list = new ArrayList<Task>();
     }
 
-    void addTask(Task task) {
+    Task addTask(Task task) {
         list.add(task);
+        return task;
     }
 
-    void changeStatus(String number, String action) throws PandaException {
+    Task changeStatus(String number, String action) throws PandaException {
         try {
-            list.get(index(number)).changeStatus(action);
-        } catch (NumberFormatException e) {
+            Task task = list.get(index(number));
+            task.changeStatus(action);
+            return task;
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new PandaException(action, "");
         }
     }
 
-    Task getTask(String number) {
-        return list.get(index(number));
+    Task deleteTask(String number) throws PandaException {
+        try {
+            Task task = list.get(index(number));
+            list.remove(task);
+            return task;
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new PandaException("delete", "");
+        }
     }
 
     int index(String number) {
@@ -33,6 +42,9 @@ public class TaskList {
 
     @Override
     public String toString() {
+        if (list.isEmpty()) {
+            return "List is empty";
+        }
         String output = "";
         for (int i = 0; i < list.size(); i++) {
             output += Integer.toString(i + 1) + "." + list.get(i).toString();
