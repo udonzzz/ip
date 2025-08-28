@@ -40,6 +40,14 @@ public class TaskList {
         return list.size();
     }
 
+    public String generateListData() {
+        String output = "";
+        for (Task task : list) {
+            output += task.writeToFile();
+        }
+        return output;
+    }
+
     @Override
     public String toString() {
         if (list.isEmpty()) {

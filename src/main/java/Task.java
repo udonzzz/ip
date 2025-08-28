@@ -1,10 +1,15 @@
-public class Task {
+public abstract class Task {
     protected String description;
     protected String status;
 
     public Task(String description) {
         this.description = description;
         this.status = "[ ]";
+    }
+
+    public Task(String status, String description) {
+        this.description = description;
+        this.status = status;
     }
 
     void changeStatus(String action) {
@@ -14,6 +19,8 @@ public class Task {
             status = "[ ]";
         }
     }
+
+    public abstract String writeToFile();
 
     @Override
     public String toString() {
