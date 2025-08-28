@@ -1,8 +1,13 @@
+import java.nio.file.Path;
 import java.util.Scanner;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Panda {
     private static final String NAME = "Panda";
-    private static final String LINES = "_".repeat(60) + "\n";
+    private static final String LINES = "_".repeat(90) + "\n";
 
     private static <T> void reply(T message) {
         System.out.println(LINES + message + "\n" + LINES);
@@ -12,12 +17,52 @@ public class Panda {
         return  array.length != expectedSize;
     }
 
-    public static void main(String[] args) throws PandaException {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         TaskList tasks = new TaskList();
+        String pathName = "panda.txt";
+        Path path = Paths.get(pathName);
+        if (!Files.exists(path)) {
+            Files.createFile(path);
+        }
+        Scanner fileScanner = new Scanner(path);
+        try {
+            while (fileScanner.hasNextLine()) {
+                String[] taskInfo = fileScanner.nextLine().split("\u2022");
+                switch (taskInfo[1]) {
+                case "[X]":
+                    break;
+                case "[ ]":
+                    break;
+                default:
+                    throw new IOException();
+                }
+                switch (taskInfo[0]) {
+                case "[T]":
+                    tasks.addTask(new ToDo(taskInfo[1], taskInfo[2]));
+                    break;
+                case "[D]":
+                    tasks.addTask(new Deadline(taskInfo[1], taskInfo[2], taskInfo[3]));
+                    break;
+                case "[E]":
+                    tasks.addTask(new Event(taskInfo[1], taskInfo[2], taskInfo[3], taskInfo[4]));
+                    break;
+                default:
+                    throw new IOException();
+                }
+            }
+        } catch (IOException e) {
+            reply("IO Error: Invalid data format! \n"
+                    + "If you are able to restore the data properly, type \"1\" to exit program.\n"
+                    + "Otherwise, type anything else, and existing data will be erased before program continues!");
+            if (scanner.nextLine().equals("1")) {
+                System.exit(1);
+            } else {
+                Files.delete(path);
+            }
+        }
         String taskAdded = "Got it. I've added this task: \n  ";
         reply("Hello I'm " + NAME + "\nWhat can I do for you?");
-        programLoop:
         while (true) {
             try {
                 String input = scanner.nextLine();
@@ -25,7 +70,7 @@ public class Panda {
                 String action = strArray[0];
                 if (action.equals("bye")) {
                     reply("Bye. Hope to see you again soon!");
-                    break programLoop;
+                    break;
                 }
                 if (action.equals("list")) {
                     reply(tasks);
@@ -81,5 +126,8 @@ public class Panda {
                 reply(e.getMessage());
             }
         }
+        FileWriter fw = new FileWriter(pathName);
+        fw.write(tasks.generateListData());
+        fw.close();
     }
 }
