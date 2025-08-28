@@ -14,7 +14,6 @@ public class Panda {
 
     public static void main(String[] args) throws IOException {
         PandaUi ui = new PandaUi();
-        Scanner scanner = new Scanner(System.in);
         TaskList tasks = new TaskList();
         String pathName = "panda.txt";
         Path path = Paths.get(pathName);
@@ -49,7 +48,7 @@ public class Panda {
             }
         } catch (IOException e) {
             ui.ioError();
-            if (scanner.nextLine().equals("1")) {
+            if (ui.userInput().equals("1")) {
                 System.exit(1);
             } else {
                 Files.delete(path);
@@ -59,7 +58,7 @@ public class Panda {
         ui.greet();
         while (true) {
             try {
-                String input = scanner.nextLine();
+                String input = ui.userInput();
                 String[] strArray = input.split(" ", 2);
                 String action = strArray[0];
                 if (action.equals("bye")) {

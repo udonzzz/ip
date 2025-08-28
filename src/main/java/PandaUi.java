@@ -24,6 +24,10 @@ public class PandaUi {
         System.out.println(LINES + message + "\n" + LINES);
     }
 
+    public String userInput() {
+        return scanner.nextLine();
+    }
+
     public void greet() {
         reply(GREETING);
     }
