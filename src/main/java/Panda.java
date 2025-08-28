@@ -7,18 +7,13 @@ import java.nio.file.Paths;
 import java.time.format.DateTimeParseException;
 
 public class Panda {
-    private static final String NAME = "Panda";
-    private static final String LINES = "_".repeat(90) + "\n";
-
-    private static <T> void reply(T message) {
-        System.out.println(LINES + message + "\n" + LINES);
-    }
 
     private static boolean arraySizeWrong(String[] array, int expectedSize) {
         return  array.length != expectedSize;
     }
 
     public static void main(String[] args) throws IOException {
+        PandaUi ui = new PandaUi();
         Scanner scanner = new Scanner(System.in);
         TaskList tasks = new TaskList();
         String pathName = "panda.txt";
@@ -53,9 +48,7 @@ public class Panda {
                 }
             }
         } catch (IOException e) {
-            reply("IO Error: Invalid data format! \n"
-                    + "If you are able to restore the data properly, type \"1\" to exit program.\n"
-                    + "Otherwise, type anything else, and existing data will be erased before program continues!");
+            ui.ioError();
             if (scanner.nextLine().equals("1")) {
                 System.exit(1);
             } else {
@@ -63,19 +56,18 @@ public class Panda {
             }
         }
         fileScanner.close();
-        String taskAdded = "Got it. I've added this task: \n  ";
-        reply("Hello I'm " + NAME + "\nWhat can I do for you?");
+        ui.greet();
         while (true) {
             try {
                 String input = scanner.nextLine();
                 String[] strArray = input.split(" ", 2);
                 String action = strArray[0];
                 if (action.equals("bye")) {
-                    reply("Bye. Hope to see you again soon!");
+                    ui.bye();
                     break;
                 }
                 if (action.equals("list")) {
-                    reply(tasks);
+                    ui.reply(tasks);
                     continue;
                 }
                 if (arraySizeWrong(strArray, 2)) {
@@ -83,24 +75,22 @@ public class Panda {
                 }
                 if (action.equals("mark")) {
                     Task task = tasks.changeStatus(strArray[1], action);
-                    reply("Nice! I've marked this task as done:\n  " + task);
+                    ui.taskMarked(task);
                     continue;
                 }
                 if (action.equals("unmark")) {
                     Task task = tasks.changeStatus(strArray[1], action);
-                    reply("Okay, I've marked this task as not done yet:\n  " + task);
+                    ui.taskUnmarked(task);
                     continue;
                 }
                 if (action.equals("delete")) {
                     Task task = tasks.deleteTask(strArray[1]);
-                    reply("Noted. I've removed this task:\n  " + task + "\nNow you have "
-                            + tasks.size() + " tasks in the list.");
+                    ui.taskDeleted(task, tasks);
                     continue;
                 }
                 if (action.equals("todo")) {
                     Task todo = tasks.addTask(new ToDo(strArray[1]));
-                    reply(taskAdded + todo + "\nNow you have "
-                            + tasks.size() + " tasks in the list.");
+                    ui.taskAdded(todo, tasks);
                     continue;
                 }
                 if (action.equals("deadline")) {
@@ -109,8 +99,7 @@ public class Panda {
                         throw new PandaException(action, infoDeadline[0]);
                     }
                     Task deadline = tasks.addTask(new Deadline(infoDeadline[0], infoDeadline[1]));
-                    reply(taskAdded + deadline + "\nNow you have "
-                            + tasks.size() + " tasks in the list.");
+                    ui.taskAdded(deadline, tasks);
                     continue;
                 }
                 if (action.equals("event")) {
@@ -119,15 +108,14 @@ public class Panda {
                         throw new PandaException(action, infoEvent[0]);
                     }
                     Task event = tasks.addTask(new Event(infoEvent[0], infoEvent[1], infoEvent[2]));
-                    reply(taskAdded + event + "\nNow you have "
-                            + tasks.size() + " tasks in the list.");
+                    ui.taskAdded(event, tasks);
                     continue;
                 }
                 throw new PandaException(action, "");
             } catch (PandaException e) {
-                reply(e.getMessage());
+                ui.pandaError(e);
             } catch (DateTimeParseException e) {
-                reply("Please provide a valid date in the format yyyy-MM-dd!");
+                ui.wrongDateFormat();
             }
         }
         FileWriter fw = new FileWriter(pathName);
