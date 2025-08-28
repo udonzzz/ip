@@ -1,9 +1,5 @@
-import java.nio.file.Path;
-import java.util.Scanner;
 import java.io.IOException;
 import java.io.FileWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.format.DateTimeParseException;
 
 public class Panda {
@@ -12,49 +8,12 @@ public class Panda {
         return  array.length != expectedSize;
     }
 
-    public static void main(String[] args) throws IOException {
-        PandaUi ui = new PandaUi();
-        TaskList tasks = new TaskList();
+    public static void main(String[] args) throws IOException{
         String pathName = "panda.txt";
-        Path path = Paths.get(pathName);
-        if (!Files.exists(path)) {
-            Files.createFile(path);
-        }
-        Scanner fileScanner = new Scanner(path);
-        try {
-            while (fileScanner.hasNextLine()) {
-                String[] taskInfo = fileScanner.nextLine().split("\u2022");
-                switch (taskInfo[1]) {
-                case "[X]":
-                    break;
-                case "[ ]":
-                    break;
-                default:
-                    throw new IOException();
-                }
-                switch (taskInfo[0]) {
-                case "[T]":
-                    tasks.addTask(new ToDo(taskInfo[1], taskInfo[2]));
-                    break;
-                case "[D]":
-                    tasks.addTask(new Deadline(taskInfo[1], taskInfo[2], taskInfo[3]));
-                    break;
-                case "[E]":
-                    tasks.addTask(new Event(taskInfo[1], taskInfo[2], taskInfo[3], taskInfo[4]));
-                    break;
-                default:
-                    throw new IOException();
-                }
-            }
-        } catch (IOException e) {
-            ui.ioError();
-            if (ui.userInput().equals("1")) {
-                System.exit(1);
-            } else {
-                Files.delete(path);
-            }
-        }
-        fileScanner.close();
+        PandaUi ui = new PandaUi();
+        FileManager fileManager = new FileManager(pathName);
+        TaskList tasks = new TaskList();
+        fileManager.loadTasks(tasks, ui);
         ui.greet();
         while (true) {
             try {
@@ -117,8 +76,6 @@ public class Panda {
                 ui.wrongDateFormat();
             }
         }
-        FileWriter fw = new FileWriter(pathName);
-        fw.write(tasks.generateListData());
-        fw.close();
+        fileManager.saveTasks(tasks);
     }
 }
