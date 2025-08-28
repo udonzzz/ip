@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.format.DateTimeParseException;
 
 public class Panda {
     private static final String NAME = "Panda";
@@ -61,6 +62,7 @@ public class Panda {
                 Files.delete(path);
             }
         }
+        fileScanner.close();
         String taskAdded = "Got it. I've added this task: \n  ";
         reply("Hello I'm " + NAME + "\nWhat can I do for you?");
         while (true) {
@@ -124,6 +126,8 @@ public class Panda {
                 throw new PandaException(action, "");
             } catch (PandaException e) {
                 reply(e.getMessage());
+            } catch (DateTimeParseException e) {
+                reply("Please provide a valid date in the format yyyy-MM-dd!");
             }
         }
         FileWriter fw = new FileWriter(pathName);
