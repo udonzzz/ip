@@ -1,3 +1,7 @@
+package panda;
+
+import panda.task.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -7,12 +11,12 @@ public class TaskList {
         this.list = new ArrayList<Task>();
     }
 
-    Task addTask(Task task) {
+    public Task addTask(Task task) {
         list.add(task);
         return task;
     }
 
-    Task changeStatus(String number, String action) throws PandaException {
+    public Task changeStatus(String number, String action) throws PandaException {
         try {
             Task task = list.get(index(number));
             task.changeStatus(action);
@@ -22,7 +26,7 @@ public class TaskList {
         }
     }
 
-    Task deleteTask(String number) throws PandaException {
+    public Task deleteTask(String number) throws PandaException {
         try {
             Task task = list.get(index(number));
             list.remove(task);
@@ -32,7 +36,7 @@ public class TaskList {
         }
     }
 
-    int index(String number) {
+    private int index(String number) {
         return Integer.parseInt(number) - 1;
     }
 

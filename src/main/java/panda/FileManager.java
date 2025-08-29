@@ -1,3 +1,9 @@
+package panda;
+
+import panda.task.ToDo;
+import panda.task.Deadline;
+import panda.task.Event;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

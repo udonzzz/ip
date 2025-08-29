@@ -1,3 +1,14 @@
+package panda.action;
+
+import panda.TaskList;
+import panda.PandaUi;
+import panda.FileManager;
+import panda.PandaException;
+
+import panda.task.ToDo;
+import panda.task.Deadline;
+import panda.task.Event;
+
 public class AddAction extends Action {
     private final String action;
     private final String[] taskInfo;

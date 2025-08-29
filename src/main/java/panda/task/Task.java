@@ -1,3 +1,5 @@
+package panda.task;
+
 public abstract class Task {
     protected String description;
     protected String status;
@@ -12,7 +14,7 @@ public abstract class Task {
         this.status = status;
     }
 
-    void changeStatus(String action) {
+    public void changeStatus(String action) {
         if (action.equals("mark")) {
             status = "[X]";
         } else {

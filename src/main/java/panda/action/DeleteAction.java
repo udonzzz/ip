@@ -1,3 +1,10 @@
+package panda.action;
+
+import panda.TaskList;
+import panda.PandaUi;
+import panda.FileManager;
+import panda.PandaException;
+
 public class DeleteAction extends Action {
     private final String number;
     public DeleteAction(String number) {
