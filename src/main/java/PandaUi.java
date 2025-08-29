@@ -9,10 +9,8 @@ public class PandaUi {
     private static final String MARKED_TASK = "Nice! I've marked this task as done:\n  ";
     private static final String UNMARKED_TASK = "Okay, I've marked this task as not done yet:\n  ";
     private static final String DELETED_TASK = "Noted. I've removed this task:\n  ";
-    private static final String WRONG_DATE_FORMAT = "Please provide a valid date in the format yyyy-MM-dd!";
-    private static final String IO_ERROR = "IO Error: Invalid data format! \n"
-            + "If you are able to restore the data properly, type \"1\" to exit program.\n"
-            + "Otherwise, type anything else, and existing data will be erased before program continues!";
+    private static final String LOAD_ERROR = "IO Error: Invalid data format in file, data will not be loaded!";
+    private static final String SAVE_ERROR = "IO Error: Task data could not be saved to panda.txt.";
 
     private final Scanner scanner;
 
@@ -24,7 +22,7 @@ public class PandaUi {
         System.out.println(LINES + message + "\n" + LINES);
     }
 
-    public String userInput() {
+    public String getUserInput() {
         return scanner.nextLine();
     }
 
@@ -56,12 +54,12 @@ public class PandaUi {
         reply(UNMARKED_TASK + task);
     }
 
-    public void wrongDateFormat() {
-        reply(WRONG_DATE_FORMAT);
+    public void loadError() {
+        reply(LOAD_ERROR);
     }
 
-    public void ioError() {
-        reply(IO_ERROR);
+    public void saveError() {
+        reply(SAVE_ERROR);
     }
 
     public void pandaError(PandaException e) {

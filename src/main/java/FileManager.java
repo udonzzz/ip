@@ -14,10 +14,10 @@ public class FileManager {
         path = Paths.get(pathName);
     }
 
-    public void loadTasks(TaskList tasks, PandaUi ui) throws IOException {
-        if (Files.exists(path)) {
-            Scanner fileScanner = new Scanner(path);
-            try {
+    public void loadTasks(TaskList tasks, PandaUi ui) {
+        try {
+            if (Files.exists(path)) {
+                Scanner fileScanner = new Scanner(path);
                 while (fileScanner.hasNextLine()) {
                     String[] taskInfo = fileScanner.nextLine().split("\u2022");
                     switch (taskInfo[1]) {
@@ -42,22 +42,21 @@ public class FileManager {
                         throw new IOException();
                     }
                 }
-            } catch (IOException e) {
-                ui.ioError();
-                if (ui.userInput().equals("1")) {
-                    System.exit(1);
-                } else {
-                    Files.delete(path);
-                }
+                fileScanner.close();
             }
-            fileScanner.close();
+        } catch (IOException e) {
+            ui.loadError();
         }
     }
 
-    public void saveTasks(TaskList tasks) throws IOException {
-        FileWriter fileWriter = new FileWriter(pathName);
-        fileWriter.write(tasks.generateListData());
-        fileWriter.close();
+    public void saveTasks(TaskList tasks, PandaUi ui) {
+        try {
+            FileWriter fileWriter = new FileWriter(pathName);
+            fileWriter.write(tasks.generateListData());
+            fileWriter.close();
+        } catch (IOException e) {
+            ui.saveError();
+        }
 
     }
 }
