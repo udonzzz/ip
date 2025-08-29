@@ -1,3 +1,7 @@
+package panda;
+
+import panda.task.Task;
+
 import java.util.Scanner;
 
 public class PandaUi {

@@ -1,3 +1,7 @@
+package panda;
+
+import panda.action.Action;
+
 public class Panda {
     private PandaUi ui;
     private FileManager fileManager;
