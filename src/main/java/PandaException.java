@@ -2,20 +2,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PandaException extends Exception {
-    private static ArrayList<String> actionList = new ArrayList<String>(List.of("add", "list", "mark",
-            "unmark", "delete", "todo", "deadline", "event"));
+    private static ArrayList<String> errorList = new ArrayList<String>(List.of("add", "list", "mark",
+            "unmark", "delete", "todo", "deadline", "event", "wrongDateFormat"));
 
     public PandaException(String action, String description) {
         super(createMessage(action, description));
     }
 
     private static String createMessage(String action, String description) {
-        if (!actionList.contains(action)) {
+        if (!errorList.contains(action)) {
             return "OOPS!!! I'm sorry, but I don't know what that means :-(";
         }
         if (action.equals("mark") || action.equals("unmark") || action.equals("delete")) {
             return "OOPS!!! " + action + " needs to be provided an integer as such: \n"
                     + action + " (insert list no. of task to " + action + ")";
+        }
+        if (action.equals("wrongDateFormat")) {
+            return "Please provide a valid date in the format yyyy-MM-dd!";
         }
         if (description.equals("")) {
             return "OOPS!!! The description of a " + action + " cannot be empty.";
@@ -25,8 +28,8 @@ public class PandaException extends Exception {
                     + "deadline (insert description) /by (insert deadline)";
         }
         if (action.equals("event")) {
-                return "OOPS!!! Please provide the duration as such: \n"
-                        +  "event (insert description) /from (insert start date) /to (insert end date)";
+            return "OOPS!!! Please provide the duration as such: \n"
+                    +  "event (insert description) /from (insert start date) /to (insert end date)";
         }
         return "OOPS!!! Unknown error occurred";
     }

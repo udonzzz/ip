@@ -1,16 +1,21 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Event extends Task {
     protected String type;
     protected LocalDate start;
     protected LocalDate end;
 
-    public Event(String description, String start, String end) {
+    public Event(String description, String start, String end) throws PandaException {
         super(description);
         this.type = "[E]";
-        this.start = LocalDate.parse(start);
-        this.end = LocalDate.parse(end);
+        try {
+            this.start = LocalDate.parse(start);
+            this.end = LocalDate.parse(end);
+        } catch (DateTimeParseException e) {
+            throw new PandaException("wrongDateFormat", "");
+        }
     }
 
     public Event(String status, String description, String start, String end) {
