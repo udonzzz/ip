@@ -1,14 +1,19 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
     protected String type;
     protected LocalDate deadline;
 
-    public Deadline(String description, String deadline) {
+    public Deadline(String description, String deadline) throws PandaException{
         super(description);
         this.type = "[D]";
-        this.deadline = LocalDate.parse(deadline);
+        try {
+            this.deadline = LocalDate.parse(deadline);
+        } catch (DateTimeParseException e) {
+            throw new PandaException("wrongDateFormat", "");
+        }
     }
 
     public Deadline(String status, String description, String deadline) {
