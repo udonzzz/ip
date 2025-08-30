@@ -8,6 +8,8 @@ public class PandaUi {
     private static final String NAME = "Panda";
     private static final String LINES = "_".repeat(90) + "\n";
     private static final String GREETING = "Hello I'm " + NAME + "\nWhat can I do for you?";
+    private static final String LIST = "Here are the tasks in your list:";
+    private static final String KEYWORD_LIST = "Here are the matching tasks in your list:";
     private static final String ADDED_TASK = "Got it. I've added this task: \n  ";
     private static final String BYE = "Bye. Hope to see you again soon!";
     private static final String MARKED_TASK = "Nice! I've marked this task as done:\n  ";
@@ -32,6 +34,14 @@ public class PandaUi {
 
     public void greet() {
         reply(GREETING);
+    }
+
+    public void list(TaskList tasks) {
+        reply(LIST + tasks);
+    }
+
+    public void listKeywordTasks(TaskList tasks, String keyword) {
+        reply(KEYWORD_LIST + tasks.generateListWithKeywords(keyword));
     }
 
     private String tasksSize(TaskList tasks) {

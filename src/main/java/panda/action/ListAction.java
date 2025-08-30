@@ -9,7 +9,7 @@ public class ListAction extends Action {
     }
 
     public void execute(TaskList tasks, PandaUi ui, FileManager fileManager) {
-        ui.reply(tasks);
+        ui.list(tasks);
     }
 
     public boolean isExit() {
