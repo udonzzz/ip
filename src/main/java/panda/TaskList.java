@@ -96,7 +96,7 @@ public class TaskList {
                 output += "\n" + (i + 1) + "." + list.get(i).toString();
             }
         }
-        if (output == "") {
+        if (output.isEmpty()) {
             return "There are no matching tasks in your list";
         } else {
             return output;
@@ -110,7 +110,7 @@ public class TaskList {
         }
         String output = "";
         for (int i = 0; i < list.size(); i++) {
-            output += "\n" + Integer.toString(i + 1) + "." + list.get(i).toString();
+            output += "\n" + (i + 1) + "." + list.get(i).toString();
         }
         return output;
     }

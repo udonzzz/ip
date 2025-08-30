@@ -22,7 +22,7 @@ public class FileManager {
     /**
      * Constructs FileManager object using the specified path name.
      *
-     * @param pathName
+     * @param pathName Path to text file.
      */
     public FileManager(String pathName) {
         this.pathName = pathName;

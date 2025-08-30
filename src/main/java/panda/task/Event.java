@@ -53,6 +53,11 @@ public class Event extends Task {
         return date.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
     }
 
+    /**
+     * Returns the event info in a format for saving to text file.
+     *
+     * @return String of event info.
+     */
     public String writeToFile() {
         return type + "\u2022" + super.status + "\u2022" + super.description
                 + "\u2022" + formatDate(start) + "\u2022" + formatDate(end) + "\n";

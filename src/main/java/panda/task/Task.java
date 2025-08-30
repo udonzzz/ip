@@ -48,10 +48,7 @@ public abstract class Task {
      * @return true if description contains keyword, false otherwise.
      */
     public boolean hasKeyword(String keyword) {
-        if (description.contains(keyword)) {
-            return true;
-        }
-        return false;
+        return description.contains(keyword);
     }
 
     public abstract String writeToFile();

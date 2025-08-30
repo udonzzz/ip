@@ -7,7 +7,7 @@ import java.util.List;
  * PandaException handles all exceptions that arise from incorrect user input.
  */
 public class PandaException extends Exception {
-    private static ArrayList<String> errorList = new ArrayList<String>(List.of("add", "list", "mark",
+    private static ArrayList<String> errorList = new ArrayList<>(List.of("add", "list", "mark",
             "unmark", "delete", "find", "todo", "deadline", "event", "wrongDateFormat"));
 
     public PandaException(String action, String description) {
@@ -25,7 +25,7 @@ public class PandaException extends Exception {
         if (action.equals("wrongDateFormat")) {
             return "Please provide a valid date in the format yyyy-MM-dd!";
         }
-        if (description.equals("")) {
+        if (description.isEmpty()) {
             return "OOPS!!! The description of a " + action + " cannot be empty.";
         }
         if (action.equals("deadline")) {
