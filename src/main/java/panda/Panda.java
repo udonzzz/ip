@@ -32,6 +32,6 @@ public class Panda {
     }
 
     public static void main(String[] args) {
-        new Panda("panda.txt").run();
+        new Panda("data/panda.txt").run();
     }
 }

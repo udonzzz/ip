@@ -49,6 +49,8 @@ public class FileManager {
                     }
                 }
                 fileScanner.close();
+            } else {
+                Files.createDirectories(path.getParent());
             }
         } catch (IOException e) {
             ui.loadError();
