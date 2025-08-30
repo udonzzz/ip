@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class PandaException extends Exception {
     private static ArrayList<String> errorList = new ArrayList<String>(List.of("add", "list", "mark",
-            "unmark", "delete", "todo", "deadline", "event", "wrongDateFormat"));
+            "unmark", "delete", "find", "todo", "deadline", "event", "wrongDateFormat"));
 
     public PandaException(String action, String description) {
         super(createMessage(action, description));

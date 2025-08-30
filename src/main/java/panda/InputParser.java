@@ -4,6 +4,7 @@ import panda.action.Action;
 import panda.action.AddAction;
 import panda.action.DeleteAction;
 import panda.action.ExitAction;
+import panda.action.FindAction;
 import panda.action.ListAction;
 import panda.action.MarkAction;
 
@@ -37,6 +38,9 @@ public class InputParser {
         }
         if (action.equals("delete")) {
             return new DeleteAction(inputArray[1]);
+        }
+        if (action.equals("find")) {
+            return new FindAction(inputArray[1]);
         }
         if (action.equals("todo") || action.equals("deadline") || action.equals("event")) {
             String[] taskInfo = inputArray[1].split(" /by | /from | /to ");

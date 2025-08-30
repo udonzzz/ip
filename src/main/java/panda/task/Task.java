@@ -41,6 +41,19 @@ public abstract class Task {
         }
     }
 
+    /**
+     * Returns true if keyword is found in description.
+     *
+     * @param keyword Keyword provided by user.
+     * @return true if description contains keyword, false otherwise.
+     */
+    public boolean hasKeyword(String keyword) {
+        if (description.contains(keyword)) {
+            return true;
+        }
+        return false;
+    }
+
     public abstract String writeToFile();
 
     @Override
