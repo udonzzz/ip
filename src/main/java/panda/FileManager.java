@@ -1,15 +1,15 @@
 package panda;
 
-import panda.task.ToDo;
-import panda.task.Deadline;
-import panda.task.Event;
-
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
-import java.io.FileWriter;
+
+import panda.task.Deadline;
+import panda.task.Event;
+import panda.task.ToDo;
 
 public class FileManager {
     private final String pathName;

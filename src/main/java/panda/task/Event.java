@@ -1,10 +1,10 @@
 package panda.task;
 
-import panda.PandaException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import panda.PandaException;
 
 public class Event extends Task {
     protected String type;
@@ -35,11 +35,11 @@ public class Event extends Task {
 
     public String writeToFile() {
         return type + "\u2022" + super.status + "\u2022" + super.description
-                + "\u2022" + formatDate(start) +  "\u2022" + formatDate(end) + "\n";
+                + "\u2022" + formatDate(start) + "\u2022" + formatDate(end) + "\n";
     }
 
     @Override
     public String toString() {
-        return type + super.toString() + " (from: " + formatDate(start) + " to: "  + formatDate(end) + ")";
+        return type + super.toString() + " (from: " + formatDate(start) + " to: " + formatDate(end) + ")";
     }
 }

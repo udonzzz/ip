@@ -31,7 +31,7 @@ public class PandaException extends Exception {
         }
         if (action.equals("event")) {
             return "OOPS!!! Please provide the duration as such: \n"
-                    +  "event (insert description) /from (insert start date) /to (insert end date)";
+                    + "event (insert description) /from (insert start date) /to (insert end date)";
         }
         return "OOPS!!! Unknown error occurred";
     }

@@ -1,8 +1,8 @@
 package panda;
 
-import panda.task.Task;
-
 import java.util.Scanner;
+
+import panda.task.Task;
 
 public class PandaUi {
     private static final String NAME = "Panda";
