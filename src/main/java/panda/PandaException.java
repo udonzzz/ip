@@ -3,6 +3,9 @@ package panda;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PandaException handles all exceptions that arise from incorrect user input.
+ */
 public class PandaException extends Exception {
     private static ArrayList<String> errorList = new ArrayList<String>(List.of("add", "list", "mark",
             "unmark", "delete", "todo", "deadline", "event", "wrongDateFormat"));

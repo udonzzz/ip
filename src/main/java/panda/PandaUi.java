@@ -4,6 +4,10 @@ import panda.task.Task;
 
 import java.util.Scanner;
 
+/**
+ * PandaUi handles all interactions with the user, apart from
+ * exception messages that arise from user input that are formatted wrongly.
+ * */
 public class PandaUi {
     private static final String NAME = "Panda";
     private static final String LINES = "_".repeat(90) + "\n";
