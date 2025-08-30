@@ -52,6 +52,26 @@ public class TaskList {
         return output;
     }
 
+    /**
+     * Returns String which contains tasks from the list containing the keyword.
+     *
+     * @param keyword Keyword provided by user.
+     * @return String of tasks that contain the keyword.
+     */
+    public String generateListWithKeywords(String keyword) {
+        String output = "";
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).hasKeyword(keyword)) {
+                output += "\n" + (i + 1) + "." + list.get(i).toString();
+            }
+        }
+        if (output == "") {
+            return "There are no matching tasks in your list";
+        } else {
+            return output;
+        }
+    }
+
     @Override
     public String toString() {
         if (list.isEmpty()) {
@@ -59,10 +79,7 @@ public class TaskList {
         }
         String output = "";
         for (int i = 0; i < list.size(); i++) {
-            output += Integer.toString(i + 1) + "." + list.get(i).toString();
-            if (i != list.size() - 1) {
-                output += "\n";
-            }
+            output += "\n" + Integer.toString(i + 1) + "." + list.get(i).toString();
         }
         return output;
     }
