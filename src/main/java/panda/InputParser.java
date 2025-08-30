@@ -7,10 +7,20 @@ import panda.action.MarkAction;
 import panda.action.DeleteAction;
 import panda.action.AddAction;
 
+/**
+ * InputParser will parse user input according to the different expected actions.
+ */
 public class InputParser {
     public InputParser() {
     }
 
+    /**
+     * Returns an Action object based on the input received from user.
+     *
+     * @param input Input from user.
+     * @return {@link Action} subclass.
+     * @throws PandaException If input is invalid.
+     */
     public Action parseUserInput(String input) throws PandaException {
         String[] inputArray = input.split(" ", 2);
         String action = inputArray[0];
@@ -39,7 +49,7 @@ public class InputParser {
             return new AddAction(action, taskInfo);
         }
         throw new  PandaException(action, "");
-     }
+    }
 
     private boolean hasExpectedSize(String[] array, int expectedSize) {
         return  array.length == expectedSize;

@@ -6,11 +6,23 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Event is a subclass of Task, with additional information of
+ * task type, and start and end date.
+ */
 public class Event extends Task {
     protected String type;
     protected LocalDate start;
     protected LocalDate end;
 
+    /**
+     * Constructs Event object based on info from user.
+     *
+     * @param description Description of task.
+     * @param start Start date of task.
+     * @param end End date of task.
+     * @throws PandaException If the date format is wrong.
+     */
     public Event(String description, String start, String end) throws PandaException {
         super(description);
         this.type = "[E]";
@@ -22,6 +34,14 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * Constructs Event object based on info from text file.
+     *
+     * @param status Status of task.
+     * @param description Description of task.
+     * @param start Start date of task.
+     * @param end End date of task.
+     */
     public Event(String status, String description, String start, String end) {
         super(status, description);
         this.type = "[E]";

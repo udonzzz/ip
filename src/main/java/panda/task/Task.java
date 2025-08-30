@@ -1,19 +1,38 @@
 package panda.task;
 
+/**
+ * Task is the superclass for ToDo, Deadline and Event.
+ */
 public abstract class Task {
     protected String description;
     protected String status;
 
+    /**
+     * Constructs Task object with description from user.
+     *
+     * @param description Description of task.
+     */
     public Task(String description) {
         this.description = description;
         this.status = "[ ]";
     }
 
+    /**
+     * Constructs Task object based on info from text file.
+     *
+     * @param status Status of task completion.
+     * @param description Description of task.
+     */
     public Task(String status, String description) {
         this.description = description;
         this.status = status;
     }
 
+    /**
+     * Changes the status for the task.
+     *
+     * @param action Unmark or mark.
+     */
     public void changeStatus(String action) {
         if (action.equals("mark")) {
             status = "[X]";

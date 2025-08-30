@@ -11,15 +11,33 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 import java.io.FileWriter;
 
+/**
+ * FileManager handles the loading and saving of data from the text file,
+ * which contains the information of the tasks.
+ */
 public class FileManager {
     private final String pathName;
     private final Path path;
 
+    /**
+     * Constructs FileManager object using the specified path name.
+     *
+     * @param pathName
+     */
     public FileManager(String pathName) {
         this.pathName = pathName;
         path = Paths.get(pathName);
     }
 
+    /**
+     * Loads tasks that are find in the text file found at path.
+     * <p>
+     * If there are issues with the file such that it cannot be loaded properly,
+     * IOException is thrown and caught within the method.
+     *
+     * @param tasks List where tasks are loaded to.
+     * @param ui User interface to communicate with user in case of IOException.
+     */
     public void loadTasks(TaskList tasks, PandaUi ui) {
         try {
             if (Files.exists(path)) {
@@ -57,6 +75,19 @@ public class FileManager {
         }
     }
 
+    /**
+     * Saves the tasks that are in TaskList.
+     * <p>
+     * As task deletion and marking/unmarking tasks are not possible
+     * to append to text file, the method will overwrite the file each time
+     * regardless of the action taken.
+     * <p>
+     * If the info cannot be saved to the file, IOException is thrown and
+     * caught within the method.
+     *
+     * @param tasks List of tasks to save.
+     * @param ui User interface to communicate with user in case of IOException.
+     */
     public void saveTasks(TaskList tasks, PandaUi ui) {
         try {
             FileWriter fileWriter = new FileWriter(pathName);
