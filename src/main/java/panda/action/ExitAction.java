@@ -1,8 +1,8 @@
 package panda.action;
 
-import panda.TaskList;
-import panda.PandaUi;
 import panda.FileManager;
+import panda.PandaUi;
+import panda.TaskList;
 
 /**
  * ExitAction is a subclass of Action, and handles the action

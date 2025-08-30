@@ -1,8 +1,8 @@
 package panda;
 
-import panda.task.Task;
-
 import java.util.ArrayList;
+
+import panda.task.Task;
 
 /**
  * TaskList manages the list of tasks and the actions to perform on the list,
@@ -12,7 +12,7 @@ public class TaskList {
     private ArrayList<Task> list;
 
     public TaskList() {
-        this.list = new ArrayList<Task>();
+        this.list = new ArrayList<>();
     }
 
     /**
@@ -90,7 +90,7 @@ public class TaskList {
         }
         String output = "";
         for (int i = 0; i < list.size(); i++) {
-            output += Integer.toString(i + 1) + "." + list.get(i).toString();
+            output += (i + 1) + "." + list.get(i).toString();
             if (i != list.size() - 1) {
                 output += "\n";
             }

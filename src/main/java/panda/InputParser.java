@@ -1,11 +1,11 @@
 package panda;
 
 import panda.action.Action;
+import panda.action.AddAction;
+import panda.action.DeleteAction;
 import panda.action.ExitAction;
 import panda.action.ListAction;
 import panda.action.MarkAction;
-import panda.action.DeleteAction;
-import panda.action.AddAction;
 
 /**
  * InputParser will parse user input according to the different expected actions.
@@ -48,10 +48,10 @@ public class InputParser {
             }
             return new AddAction(action, taskInfo);
         }
-        throw new  PandaException(action, "");
+        throw new PandaException(action, "");
     }
 
     private boolean hasExpectedSize(String[] array, int expectedSize) {
-        return  array.length == expectedSize;
+        return array.length == expectedSize;
     }
 }

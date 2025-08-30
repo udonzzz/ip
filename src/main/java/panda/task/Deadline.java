@@ -1,10 +1,10 @@
 package panda.task;
 
-import panda.PandaException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import panda.PandaException;
 
 /**
  * Deadline is a subclass of Task, with additional information of
@@ -21,7 +21,7 @@ public class Deadline extends Task {
      * @param deadline Deadline to complete task.
      * @throws PandaException If the date format is wrong.
      */
-    public Deadline(String description, String deadline) throws PandaException{
+    public Deadline(String description, String deadline) throws PandaException {
         super(description);
         this.type = "[D]";
         try {
@@ -41,7 +41,7 @@ public class Deadline extends Task {
     public Deadline(String status, String description, String deadline) {
         super(status, description);
         this.type = "[D]";
-        this.deadline = LocalDate.parse(deadline,  DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+        this.deadline = LocalDate.parse(deadline, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
     }
 
     private String formatDate() {

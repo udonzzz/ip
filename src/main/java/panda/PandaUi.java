@@ -1,8 +1,8 @@
 package panda;
 
-import panda.task.Task;
-
 import java.util.Scanner;
+
+import panda.task.Task;
 
 /**
  * PandaUi handles all interactions with the user, apart from
