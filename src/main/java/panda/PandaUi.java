@@ -23,13 +23,28 @@ public class PandaUi {
     private static final String SAVE_ERROR = "IO Error: Task data could not be saved to panda.txt.";
 
     private final Scanner scanner;
+    private String response;
 
+    /**
+     * Constructs PandaUi object.
+     */
     public PandaUi() {
         scanner = new Scanner(System.in);
+        response = "";
     }
 
-    public <T> void reply(T message) {
-        System.out.println(LINES + message + "\n" + LINES);
+    /**
+     * Supports generation of output for both text-based UI and the GUI.
+     *
+     * @param message Message to be displayed to user.
+     */
+    public void reply(String message) {
+        response = message;
+        System.out.println(LINES + response + "\n" + LINES);
+    }
+
+    public String provideResponse() {
+        return response;
     }
 
     public String getUserInput() {

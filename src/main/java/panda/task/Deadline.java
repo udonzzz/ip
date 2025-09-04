@@ -49,7 +49,7 @@ public class Deadline extends Task {
     }
 
     public String writeToFile() {
-        return type + "\u2022" + super.status + "\u2022" + super.description + "\u2022" + formatDate() + "\n";
+        return type + "|" + super.status + "|" + super.description + "|" + formatDate() + "\n";
     }
 
     @Override

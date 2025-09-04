@@ -3,17 +3,17 @@ package panda;
 import panda.action.Action;
 
 /**
- * Panda is the entry point for the application.
+ * Panda is the entry point for the application for running on the text-based UI.
  * <p>
  * It receives input from the user to add tasks to be done, such as ToDo, Deadline and Event.
  * These tasks can be marked as done/not done or deleted, and they are stored into the text file,
  * such that they are loaded into the program when program starts again the next time.
  */
 public class Panda {
-    private PandaUi ui;
-    private FileManager fileManager;
-    private InputParser parser;
-    private TaskList tasks;
+    private final PandaUi ui;
+    private final FileManager fileManager;
+    private final InputParser parser;
+    private final TaskList tasks;
 
     /**
      * Constructs Panda object with the initialised PandaUi, FileManager,
@@ -29,8 +29,18 @@ public class Panda {
         fileManager.loadTasks(tasks, ui);
     }
 
+    public String getResponse(String input) {
+        try {
+            Action a = parser.parseUserInput(input);
+            a.execute(tasks, ui, fileManager);
+        } catch (PandaException e) {
+            ui.pandaError(e);
+        }
+        return ui.provideResponse();
+    }
+
     /**
-     * Runs the application until user provides the input to exit application.
+     * Runs the application on console until user provides the input to exit application.
      */
     public void run() {
         ui.greet();

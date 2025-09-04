@@ -2,6 +2,7 @@ package panda;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -43,7 +44,7 @@ public class FileManager {
             if (Files.exists(path)) {
                 Scanner fileScanner = new Scanner(path);
                 while (fileScanner.hasNextLine()) {
-                    String[] taskInfo = fileScanner.nextLine().split("\u2022");
+                    String[] taskInfo = fileScanner.nextLine().split("\\|");
                     switch (taskInfo[1]) {
                     case "[X]":
                         break;
