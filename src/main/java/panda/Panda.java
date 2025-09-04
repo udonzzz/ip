@@ -1,6 +1,8 @@
 package panda;
 
+import javafx.application.Application;
 import panda.action.Action;
+import panda.gui.Main;
 
 /**
  * Panda is the entry point for the application.
@@ -29,8 +31,18 @@ public class Panda {
         fileManager.loadTasks(tasks, ui);
     }
 
+    public String getResponse(String input) {
+        try {
+            Action a = parser.parseUserInput(input);
+            a.execute(tasks, ui, fileManager);
+        } catch (PandaException e) {
+            ui.pandaError(e);
+        }
+        return ui.provideResponse();
+    }
+
     /**
-     * Runs the application until user provides the input to exit application.
+     * Runs the application on console until user provides the input to exit application.
      */
     public void run() {
         ui.greet();

@@ -106,7 +106,7 @@ public class TaskList {
     @Override
     public String toString() {
         if (list.isEmpty()) {
-            return "List is empty";
+            return "\nList is empty";
         }
         String output = "";
         for (int i = 0; i < list.size(); i++) {
