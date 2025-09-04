@@ -25,11 +25,19 @@ public class PandaUi {
     private final Scanner scanner;
     private String response;
 
+    /**
+     * Constructs PandaUi object.
+     */
     public PandaUi() {
         scanner = new Scanner(System.in);
         response = "";
     }
 
+    /**
+     * Supports generation of output for both text-based UI and the GUI.
+     *
+     * @param message Message to be displayed to user.
+     */
     public void reply(String message) {
         response = message;
         System.out.println(LINES + response + "\n" + LINES);

@@ -14,7 +14,7 @@ import panda.Panda;
  */
 public class Main extends Application {
 
-    private Panda panda = new Panda("data/panda.txt");
+    private final Panda panda = new Panda("data/panda.txt");
 
     @Override
     public void start(Stage stage) {

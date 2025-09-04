@@ -14,6 +14,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+/**
+ * DialogBox handles the creation of the text boxes for both user input and Panda output.
+ */
 public class DialogBox extends HBox {
     @FXML
     private Label dialog;

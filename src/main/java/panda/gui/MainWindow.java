@@ -27,8 +27,8 @@ public class MainWindow extends AnchorPane {
 
     private Panda panda;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private Image pandaImage = new Image(this.getClass().getResourceAsStream("/images/panda.png"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private final Image pandaImage = new Image(this.getClass().getResourceAsStream("/images/panda.png"));
 
     @FXML
     public void initialize() {
@@ -45,7 +45,7 @@ public class MainWindow extends AnchorPane {
      * the dialog container. Clears the user input after processing.
      */
     @FXML
-    private void handleUserInput() throws InterruptedException {
+    private void handleUserInput() {
         String input = userInput.getText();
         String response = panda.getResponse(input);
         dialogContainer.getChildren().addAll(
