@@ -59,8 +59,8 @@ public class Event extends Task {
      * @return String of event info.
      */
     public String writeToFile() {
-        return type + "\u2022" + super.status + "\u2022" + super.description
-                + "\u2022" + formatDate(start) + "\u2022" + formatDate(end) + "\n";
+        return type + "|" + super.status + "|" + super.description
+                + "|" + formatDate(start) + "|" + formatDate(end) + "\n";
     }
 
     @Override

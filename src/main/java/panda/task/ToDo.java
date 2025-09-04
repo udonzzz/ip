@@ -29,7 +29,7 @@ public class ToDo extends Task {
     }
 
     public String writeToFile() {
-        return type + "\u2022" + super.status + "\u2022" + super.description + "\n";
+        return type + "|" + super.status + "|" + super.description + "\n";
     }
 
     @Override
