@@ -1,6 +1,8 @@
 package panda;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import panda.task.Task;
 
@@ -76,11 +78,9 @@ public class TaskList {
      * @return String of tasks in the lists.
      */
     public String generateListData() {
-        String output = "";
-        for (Task task : tasks) {
-            output += task.writeToFile();
-        }
-        return output;
+        return tasks.stream()
+                .map(Task::writeToFile)
+                .collect(Collectors.joining());
     }
 
     /**
@@ -90,28 +90,20 @@ public class TaskList {
      * @return String of tasks that contain the keyword.
      */
     public String generateListWithKeywords(String keyword) {
-        String output = "";
-        for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).hasKeyword(keyword)) {
-                output += "\n" + (i + 1) + "." + tasks.get(i).toString();
-            }
-        }
-        if (output.isEmpty()) {
-            return "There are no matching tasks in your list";
-        } else {
-            return output;
-        }
+        return IntStream.range(0, size())
+                .filter(i -> tasks.get(i).hasKeyword(keyword))
+                .mapToObj(i -> "\n" + (i + 1) + "." + tasks.get(i).toString())
+                .collect(Collectors.collectingAndThen(
+                        Collectors.joining(),
+                        str -> str.isEmpty() ? "\nThere are no matching tasks in your list" : str));
     }
 
     @Override
     public String toString() {
-        if (tasks.isEmpty()) {
-            return "\nList is empty";
-        }
-        String output = "";
-        for (int i = 0; i < tasks.size(); i++) {
-            output += "\n" + (i + 1) + "." + tasks.get(i).toString();
-        }
-        return output;
+        return IntStream.range(0, size())
+                .mapToObj(i -> "\n" + (i + 1) + "." + tasks.get(i).toString())
+                .collect(Collectors.collectingAndThen(
+                        Collectors.joining(),
+                        str -> str.isEmpty() ? "\nList is empty" : str));
     }
 }
