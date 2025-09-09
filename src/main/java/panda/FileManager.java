@@ -46,7 +46,6 @@ public class FileManager {
                     String[] taskInfo = fileScanner.nextLine().split("\\|");
                     switch (taskInfo[1]) {
                     case "[X]":
-                        break;
                     case "[ ]":
                         break;
                     default:
