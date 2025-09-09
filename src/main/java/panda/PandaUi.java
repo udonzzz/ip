@@ -40,6 +40,7 @@ public class PandaUi {
      */
     public void reply(String message) {
         response = message;
+        assert !response.isEmpty() : "Empty response to user!";
         System.out.println(LINES + response + "\n" + LINES);
     }
 
