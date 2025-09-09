@@ -25,7 +25,7 @@ public class DeleteAction extends Action {
      * @throws PandaException If String number provided in not an integer or out of array index.
      */
     public void execute(TaskList tasks, PandaUi ui, FileManager fileManager) throws PandaException {
-        ui.taskDeleted(tasks.deleteTask(number), tasks);
+        ui.showTaskDeleted(tasks.deleteTask(number), tasks);
         fileManager.saveTasks(tasks, ui);
     }
 

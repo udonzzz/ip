@@ -38,11 +38,11 @@ public class AddAction extends Action {
      */
     public void execute(TaskList tasks, PandaUi ui, FileManager fileManager) throws PandaException {
         if (action.equals("todo")) {
-            ui.taskAdded(tasks.addTask(new ToDo(taskInfo[0])), tasks);
+            ui.showTaskAdded(tasks.addTask(new ToDo(taskInfo[0])), tasks);
         } else if (action.equals("deadline")) {
-            ui.taskAdded(tasks.addTask(new Deadline(taskInfo[0], taskInfo[1])), tasks);
+            ui.showTaskAdded(tasks.addTask(new Deadline(taskInfo[0], taskInfo[1])), tasks);
         } else if (action.equals("event")) {
-            ui.taskAdded(tasks.addTask(new Event(taskInfo[0], taskInfo[1], taskInfo[2])), tasks);
+            ui.showTaskAdded(tasks.addTask(new Event(taskInfo[0], taskInfo[1], taskInfo[2])), tasks);
         }
         fileManager.saveTasks(tasks, ui);
     }

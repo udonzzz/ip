@@ -34,7 +34,7 @@ public class Panda {
             Action a = parser.parseUserInput(input);
             a.execute(tasks, ui, fileManager);
         } catch (PandaException e) {
-            ui.pandaError(e);
+            ui.showPandaError(e);
         }
         return ui.provideResponse();
     }
@@ -52,7 +52,7 @@ public class Panda {
                 a.execute(tasks, ui, fileManager);
                 isExit = a.isExit();
             } catch (PandaException e) {
-                ui.pandaError(e);
+                ui.showPandaError(e);
             }
         }
     }

@@ -34,9 +34,9 @@ public class MarkAction extends Action {
      */
     public void execute(TaskList tasks, PandaUi ui, FileManager fileManager) throws PandaException {
         if (action.equals("mark")) {
-            ui.taskMarked(tasks.changeStatus(number, action));
+            ui.showTaskMarked(tasks.changeStatus(number, action));
         } else {
-            ui.taskUnmarked(tasks.changeStatus(number, action));
+            ui.showTaskUnmarked(tasks.changeStatus(number, action));
         }
         fileManager.saveTasks(tasks, ui);
     }

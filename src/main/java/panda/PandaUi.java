@@ -63,39 +63,39 @@ public class PandaUi {
         reply(KEYWORD_LIST + tasks.generateListWithKeywords(keyword));
     }
 
-    private String tasksSize(TaskList tasks) {
+    private String showTasksSize(TaskList tasks) {
         return "\nNow you have " + tasks.size() + " tasks in the list.";
     }
 
-    public void taskAdded(Task task, TaskList tasks) {
-        reply(ADDED_TASK + task + tasksSize(tasks));
+    public void showTaskAdded(Task task, TaskList tasks) {
+        reply(ADDED_TASK + task + showTasksSize(tasks));
     }
 
-    public void taskDeleted(Task task, TaskList tasks) {
-        reply(DELETED_TASK + task + tasksSize(tasks));
+    public void showTaskDeleted(Task task, TaskList tasks) {
+        reply(DELETED_TASK + task + showTasksSize(tasks));
     }
 
     public void bye() {
         reply(BYE);
     }
 
-    public void taskMarked(Task task) {
+    public void showTaskMarked(Task task) {
         reply(MARKED_TASK + task);
     }
 
-    public void taskUnmarked(Task task) {
+    public void showTaskUnmarked(Task task) {
         reply(UNMARKED_TASK + task);
     }
 
-    public void loadError() {
+    public void showLoadError() {
         reply(LOAD_ERROR);
     }
 
-    public void saveError() {
+    public void showSaveError() {
         reply(SAVE_ERROR);
     }
 
-    public void pandaError(PandaException e) {
+    public void showPandaError(PandaException e) {
         reply(e.getMessage());
     }
 }
