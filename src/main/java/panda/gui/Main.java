@@ -13,8 +13,7 @@ import panda.Panda;
  * A GUI for Panda using FXML.
  */
 public class Main extends Application {
-
-    private final Panda panda = new Panda("data/panda.txt");
+    private final Panda panda = new Panda();
 
     @Override
     public void start(Stage stage) {
