@@ -22,6 +22,8 @@ public class TaskList {
      * @return {@link Task} that was added.
      */
     public Task addTask(Task task) {
+        assert !task.getDescription().isEmpty() : "Task description is missing!";
+        assert !task.getStatus().isEmpty() : "Task status is missing!";
         tasks.add(task);
         return task;
     }
