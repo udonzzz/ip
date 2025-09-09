@@ -10,20 +10,18 @@ import panda.action.Action;
  * such that they are loaded into the program when program starts again the next time.
  */
 public class Panda {
+    private static final String FILE_PATH = "data/panda.txt";
     private final PandaUi ui;
     private final FileManager fileManager;
     private final InputParser parser;
     private final TaskList tasks;
-
     /**
      * Constructs Panda object with the initialised PandaUi, FileManager,
      * InputParser and TaskList objects.
-     *
-     * @param filePath File path to the text file where tasks are loaded and saved.
      */
-    public Panda(String filePath) {
+    public Panda() {
         ui = new PandaUi();
-        fileManager = new FileManager(filePath);
+        fileManager = new FileManager(FILE_PATH);
         parser = new InputParser();
         tasks = new TaskList();
         fileManager.loadTasks(tasks, ui);
@@ -58,6 +56,6 @@ public class Panda {
     }
 
     public static void main(String[] args) {
-        new Panda("data/panda.txt").run();
+        new Panda().run();
     }
 }

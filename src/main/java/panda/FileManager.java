@@ -40,35 +40,35 @@ public class FileManager {
      */
     public void loadTasks(TaskList tasks, PandaUi ui) {
         try {
-            if (Files.exists(path)) {
-                Scanner fileScanner = new Scanner(path);
-                while (fileScanner.hasNextLine()) {
-                    String[] taskInfo = fileScanner.nextLine().split("\\|");
-                    switch (taskInfo[1]) {
-                    case "[X]":
-                    case "[ ]":
-                        break;
-                    default:
-                        throw new IOException();
-                    }
-                    switch (taskInfo[0]) {
-                    case "[T]":
-                        tasks.addTask(new ToDo(taskInfo[1], taskInfo[2]));
-                        break;
-                    case "[D]":
-                        tasks.addTask(new Deadline(taskInfo[1], taskInfo[2], taskInfo[3]));
-                        break;
-                    case "[E]":
-                        tasks.addTask(new Event(taskInfo[1], taskInfo[2], taskInfo[3], taskInfo[4]));
-                        break;
-                    default:
-                        throw new IOException();
-                    }
-                }
-                fileScanner.close();
-            } else {
+            if (!Files.exists(path)) {
                 Files.createDirectories(path.getParent());
             }
+            Scanner fileScanner = new Scanner(path);
+            while (fileScanner.hasNextLine()) {
+                String[] taskInfo = fileScanner.nextLine().split("\\|");
+                switch (taskInfo[1]) {
+                case "[X]":
+                    break;
+                case "[ ]":
+                    break;
+                default:
+                    throw new IOException();
+                }
+                switch (taskInfo[0]) {
+                case "[T]":
+                    tasks.addTask(new ToDo(taskInfo[1], taskInfo[2]));
+                    break;
+                case "[D]":
+                    tasks.addTask(new Deadline(taskInfo[1], taskInfo[2], taskInfo[3]));
+                    break;
+                case "[E]":
+                    tasks.addTask(new Event(taskInfo[1], taskInfo[2], taskInfo[3], taskInfo[4]));
+                    break;
+                default:
+                    throw new IOException();
+                }
+            }
+            fileScanner.close();
         } catch (IOException e) {
             ui.showLoadError();
         }
