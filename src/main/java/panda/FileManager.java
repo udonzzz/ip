@@ -2,7 +2,6 @@ package panda;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -47,7 +46,6 @@ public class FileManager {
                     String[] taskInfo = fileScanner.nextLine().split("\\|");
                     switch (taskInfo[1]) {
                     case "[X]":
-                        break;
                     case "[ ]":
                         break;
                     default:
@@ -72,7 +70,7 @@ public class FileManager {
                 Files.createDirectories(path.getParent());
             }
         } catch (IOException e) {
-            ui.loadError();
+            ui.showLoadError();
         }
     }
 
@@ -95,7 +93,7 @@ public class FileManager {
             fileWriter.write(tasks.generateListData());
             fileWriter.close();
         } catch (IOException e) {
-            ui.saveError();
+            ui.showSaveError();
         }
 
     }

@@ -41,6 +41,14 @@ public abstract class Task {
         }
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
     /**
      * Returns true if keyword is found in description.
      *

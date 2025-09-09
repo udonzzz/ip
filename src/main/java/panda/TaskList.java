@@ -9,10 +9,10 @@ import panda.task.Task;
  * whether it is to add or delete a task, or change the status of a task.
  */
 public class TaskList {
-    private ArrayList<Task> list;
+    private ArrayList<Task> tasks;
 
     public TaskList() {
-        this.list = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
     /**
@@ -22,7 +22,9 @@ public class TaskList {
      * @return {@link Task} that was added.
      */
     public Task addTask(Task task) {
-        list.add(task);
+        assert !task.getDescription().isEmpty() : "Task description is missing!";
+        assert !task.getStatus().isEmpty() : "Task status is missing!";
+        tasks.add(task);
         return task;
     }
 
@@ -36,7 +38,7 @@ public class TaskList {
      */
     public Task changeStatus(String number, String action) throws PandaException {
         try {
-            Task task = list.get(index(number));
+            Task task = tasks.get(index(number));
             task.changeStatus(action);
             return task;
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
@@ -53,8 +55,8 @@ public class TaskList {
      */
     public Task deleteTask(String number) throws PandaException {
         try {
-            Task task = list.get(index(number));
-            list.remove(task);
+            Task task = tasks.get(index(number));
+            tasks.remove(task);
             return task;
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new PandaException("delete", "");
@@ -66,7 +68,7 @@ public class TaskList {
     }
 
     int size() {
-        return list.size();
+        return tasks.size();
     }
 
     /**
@@ -77,7 +79,7 @@ public class TaskList {
      */
     public String generateListData() {
         String output = "";
-        for (Task task : list) {
+        for (Task task : tasks) {
             output += task.writeToFile();
         }
         return output;
@@ -91,9 +93,9 @@ public class TaskList {
      */
     public String generateListWithKeywords(String keyword) {
         String output = "";
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).hasKeyword(keyword)) {
-                output += "\n" + (i + 1) + "." + list.get(i).toString();
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).hasKeyword(keyword)) {
+                output += "\n" + (i + 1) + "." + tasks.get(i).toString();
             }
         }
         if (output.isEmpty()) {
@@ -105,12 +107,12 @@ public class TaskList {
 
     @Override
     public String toString() {
-        if (list.isEmpty()) {
+        if (tasks.isEmpty()) {
             return "\nList is empty";
         }
         String output = "";
-        for (int i = 0; i < list.size(); i++) {
-            output += "\n" + (i + 1) + "." + list.get(i).toString();
+        for (int i = 0; i < tasks.size(); i++) {
+            output += "\n" + (i + 1) + "." + tasks.get(i).toString();
         }
         return output;
     }
