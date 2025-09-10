@@ -34,7 +34,8 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
-                DialogBox.getPandaDialog("Hello I'm Panda!\nWhat can I do for you?", pandaImage)
+                DialogBox.getPandaDialog("Hello I'm Panda!\nWhat can I do for you?"
+                        + "\nIf you are unsure, just type \"help\"!", pandaImage)
         );
     }
 

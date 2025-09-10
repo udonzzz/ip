@@ -10,7 +10,8 @@ public class PandaException extends Exception {
     private static final ArrayList<String> errorList = new ArrayList<>(List.of("add", "list", "mark",
             "unmark", "delete", "find", "todo", "deadline", "event", "wrongDateFormat"));
 
-    private static final String UNKNOWN_ACTION = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+    private static final String UNKNOWN_ACTION = "OOPS!!! I'm sorry, but I don't know what that means :-("
+            + "\nType \"help\" if you are unsure!";
     private static final String WRONG_DATE_FORMAT = "Please provide a valid date in the format yyyy-MM-dd!";
     private static final String DEADLINE_TASK_FORMAT = "OOPS!!! Please provide the deadline as such: \n"
             + "deadline (insert description) /by (insert deadline)";

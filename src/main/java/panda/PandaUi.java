@@ -11,7 +11,8 @@ import panda.task.Task;
 public class PandaUi {
     private static final String NAME = "Panda";
     private static final String LINES = "_".repeat(90) + "\n";
-    private static final String GREETING = "Hello I'm " + NAME + "\nWhat can I do for you?";
+    private static final String GREETING = "Hello I'm " + NAME + "\nWhat can I do for you?"
+            + "If you are unsure, just type \"help\"!";
     private static final String LIST = "Here are the tasks in your list:";
     private static final String KEYWORD_LIST = "Here are the matching tasks in your list:";
     private static final String ADDED_TASK = "Got it. I've added this task: \n  ";
@@ -21,6 +22,18 @@ public class PandaUi {
     private static final String DELETED_TASK = "Noted. I've removed this task:\n  ";
     private static final String LOAD_ERROR = "IO Error: Invalid data format in file, data will not be loaded!";
     private static final String SAVE_ERROR = "IO Error: Task data could not be saved to panda.txt.";
+    private static final String HELP_INFO = """
+            Here are the list of actions that are available and how to use them:
+            1. todo (description) - Creates a todo task
+            2. deadline (description) /by (deadline) - Creates a deadline task
+            3. event (description) /from (start date) /to (end date) - Creates an event task
+            4. list - Shows all the tasks added
+            5. mark (task no.) - Changes the status of the specified task to done
+            6. unmark (task no.) - Changes the status of the specified task to not done
+            7. delete (task no.) - Removes the specified task
+            8. find (keyword) - Shows all tasks that contain the keyword
+            9. bye - Exits the program
+            """;
 
     private final Scanner scanner;
     private String response;
@@ -98,5 +111,9 @@ public class PandaUi {
 
     public void showPandaError(PandaException e) {
         reply(e.getMessage());
+    }
+
+    public void showHelp() {
+        reply(HELP_INFO);
     }
 }

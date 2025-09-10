@@ -5,6 +5,7 @@ import panda.action.AddAction;
 import panda.action.DeleteAction;
 import panda.action.ExitAction;
 import panda.action.FindAction;
+import panda.action.HelpAction;
 import panda.action.ListAction;
 import panda.action.MarkAction;
 
@@ -29,6 +30,8 @@ public class InputParser {
             return new ExitAction();
         } else if (action.equals("list")) {
             return new ListAction();
+        } else if (action.equals("help")) {
+            return new HelpAction();
         }
         if (!hasExpectedSize(inputArray, 2)) {
             throw new PandaException(action, "");
