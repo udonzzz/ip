@@ -22,6 +22,8 @@ public class DialogBox extends HBox {
     private Label dialog;
     @FXML
     private ImageView displayPicture;
+    @FXML
+    private ImageView bambooDecoration;
 
     private DialogBox(String text, Image img) {
         try {
@@ -55,6 +57,12 @@ public class DialogBox extends HBox {
     public static DialogBox getPandaDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
+
+        // ChatGPT used to figure out how to add additional design element of a bamboo to the dialog box
+        db.bambooDecoration.setImage(new Image(DialogBox.class.getResourceAsStream("/images/bamboo.png")));
+        db.bambooDecoration.setVisible(true);
+        db.dialog.getStyleClass().add("panda-label");
+
         return db;
     }
 }

@@ -11,6 +11,11 @@
     -fx-border-radius: 1em 1em 1em 0;
 }
 
+.panda-label {
+    -fx-background-color: #F8F3E7;
+    -fx-border-color: #050304;
+}
+
 .add-label {
     -fx-background-color: yellow;
 }

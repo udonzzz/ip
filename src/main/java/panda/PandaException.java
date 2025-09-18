@@ -7,7 +7,7 @@ import java.util.List;
  * PandaException handles all exceptions that arise from incorrect user input.
  */
 public class PandaException extends Exception {
-    private static final ArrayList<String> errorList = new ArrayList<>(List.of("add", "list", "mark",
+    private static final ArrayList<String> errorList = new ArrayList<>(List.of("list", "mark",
             "unmark", "delete", "find", "todo", "deadline", "event", "wrongDateFormat"));
 
     private static final String UNKNOWN_ACTION = "OOPS!!! I'm sorry, but I don't know what that means :-("
