@@ -10,14 +10,14 @@ public class PandaException extends Exception {
     private static final ArrayList<String> errorList = new ArrayList<>(List.of("list", "mark",
             "unmark", "delete", "find", "todo", "deadline", "event", "wrongDateFormat"));
 
-    private static final String UNKNOWN_ACTION = "OOPS!!! I'm sorry, but I don't know what that means :-("
-            + "\nType \"help\" if you are unsure!";
+    private static final String UNKNOWN_ACTION = "I don't know such an action..."
+            + "\nType \"help\" if you are forgot the list of actions!";
     private static final String WRONG_DATE_FORMAT = "Please provide a valid date in the format yyyy-MM-dd!";
-    private static final String DEADLINE_TASK_FORMAT = "OOPS!!! Please provide the deadline as such: \n"
+    private static final String DEADLINE_TASK_FORMAT = "Please provide the deadline as such: \n"
             + "deadline (insert description) /by (insert deadline)";
-    private static final String EVENT_TASK_FORMAT = "OOPS!!! Please provide the event as such: \n"
+    private static final String EVENT_TASK_FORMAT = "Please provide the event as such: \n"
             + "event (insert description) /from (insert start date) /to (insert end date)";
-    private static final String UNKNOWN_ERROR = "OOPS!!! Unknown error occurred";
+    private static final String UNKNOWN_ERROR = "OH NO SOMETHING BAD HAS HAPPENED!!!";
 
     public PandaException(String action, String description) {
         super(createMessage(action, description));
@@ -28,14 +28,14 @@ public class PandaException extends Exception {
             return UNKNOWN_ACTION;
         }
         if (action.equals("mark") || action.equals("unmark") || action.equals("delete")) {
-            return "OOPS!!! " + action + " needs to be provided an integer as such: \n"
+            return action + " needs to be provided an integer as such: \n"
                     + action + " (insert list no. of task to " + action + ")";
         }
         if (action.equals("wrongDateFormat")) {
             return WRONG_DATE_FORMAT;
         }
         if (description.isEmpty()) {
-            return "OOPS!!! The description of a " + action + " cannot be empty.";
+            return "The description of a " + action + " cannot be empty.";
         }
         if (action.equals("deadline")) {
             return DEADLINE_TASK_FORMAT;

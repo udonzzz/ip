@@ -11,19 +11,19 @@ import panda.task.Task;
 public class PandaUi {
     private static final String NAME = "Panda";
     private static final String LINES = "_".repeat(90) + "\n";
-    private static final String GREETING = "Hello I'm " + NAME + "\nWhat can I do for you?"
-            + "If you are unsure, just type \"help\"!";
-    private static final String LIST = "Here are the tasks in your list:";
-    private static final String KEYWORD_LIST = "Here are the matching tasks in your list:";
+    private static final String GREETING = "Hello I'm " + NAME + " your cute personal assistant!\n"
+            + "What can I do for you?\n" + "If you are unsure, just type \"help\"!";
+    private static final String LIST = "Here are your tasks:";
+    private static final String KEYWORD_LIST = "Found your matching tasks:";
     private static final String ADDED_TASK = "Got it. I've added this task: \n  ";
-    private static final String BYE = "Bye. Hope to see you again soon!";
-    private static final String MARKED_TASK = "Nice! I've marked this task as done:\n  ";
-    private static final String UNMARKED_TASK = "Okay, I've marked this task as not done yet:\n  ";
-    private static final String DELETED_TASK = "Noted. I've removed this task:\n  ";
+    private static final String BYE = "Give me some bamboo before you leave!";
+    private static final String MARKED_TASK = "Goob job, this task is completed:\n  ";
+    private static final String UNMARKED_TASK = "Don't forget to complete this task:\n  ";
+    private static final String DELETED_TASK = "Goodbye to this task:\n  ";
     private static final String LOAD_ERROR = "IO Error: Invalid data format in file, data will not be loaded!";
     private static final String SAVE_ERROR = "IO Error: Task data could not be saved to panda.txt.";
     private static final String HELP_INFO = """
-            Here are the list of actions that are available and how to use them:
+            Let me help you! Here are the list of actions that are available and how to use them:
             1. todo (description) - Creates a todo task
             2. deadline (description) /by (deadline) - Creates a deadline task
             3. event (description) /from (start date) /to (end date) - Creates an event task
