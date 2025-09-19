@@ -25,8 +25,8 @@ public class PandaUi {
     private static final String HELP_INFO = """
             Let me help you! Here are the list of actions that are available and how to use them:
             1. todo (description) - Creates a todo task
-            2. deadline (description) /by (deadline) - Creates a deadline task
-            3. event (description) /from (start date) /to (end date) - Creates an event task
+            2. deadline (description) /by (deadline dateTime) - Creates a deadline task
+            3. event (description) /from (start dateTime) /to (end dateTime) - Creates an event task
             4. list - Shows all the tasks added
             5. mark (task no.) - Changes the status of the specified task to done
             6. unmark (task no.) - Changes the status of the specified task to not done

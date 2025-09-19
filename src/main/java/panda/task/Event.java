@@ -1,8 +1,9 @@
 package panda.task;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 import panda.PandaException;
 
@@ -12,8 +13,8 @@ import panda.PandaException;
  */
 public class Event extends Task {
     protected String type;
-    protected LocalDate start;
-    protected LocalDate end;
+    protected LocalDateTime start;
+    protected LocalDateTime end;
 
     /**
      * Constructs Event object based on info from user.
@@ -27,10 +28,12 @@ public class Event extends Task {
         super(description);
         this.type = "[E]";
         try {
-            this.start = LocalDate.parse(start);
-            this.end = LocalDate.parse(end);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm")
+                    .withResolverStyle(ResolverStyle.STRICT);
+            this.start = LocalDateTime.parse(start, formatter);
+            this.end = LocalDateTime.parse(end, formatter);
         } catch (DateTimeParseException e) {
-            throw new PandaException("wrongDateFormat", "");
+            throw new PandaException("wrongDateTimeFormat", "");
         }
     }
 
@@ -45,12 +48,20 @@ public class Event extends Task {
     public Event(String status, String description, String start, String end) {
         super(status, description);
         this.type = "[E]";
-        this.start = LocalDate.parse(start, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
-        this.end = LocalDate.parse(end, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+        this.start = LocalDateTime.parse(start, DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
+        this.end = LocalDateTime.parse(end, DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
     }
 
-    private String formatDate(LocalDate date) {
-        return date.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+    private String formatDate(LocalDateTime date) {
+        return date.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
+    }
+
+    public LocalDateTime getStart() {
+        return start;
+    }
+
+    public LocalDateTime getEnd() {
+        return end;
     }
 
     /**

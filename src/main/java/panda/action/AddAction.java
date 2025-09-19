@@ -1,6 +1,7 @@
 package panda.action;
 
 import panda.FileManager;
+import panda.PandaEventDateTimeChecker;
 import panda.PandaException;
 import panda.PandaUi;
 import panda.TaskList;
@@ -42,7 +43,15 @@ public class AddAction extends Action {
         } else if (action.equals("deadline")) {
             ui.showTaskAdded(tasks.addTask(new Deadline(taskInfo[0], taskInfo[1])), tasks);
         } else if (action.equals("event")) {
-            ui.showTaskAdded(tasks.addTask(new Event(taskInfo[0], taskInfo[1], taskInfo[2])), tasks);
+            Event event = new Event(taskInfo[0], taskInfo[1], taskInfo[2]);
+            if (PandaEventDateTimeChecker.hasMismatchedStartAndEnd(event)) {
+                throw new PandaException("MismatchedDateTime", "");
+            }
+            if (PandaEventDateTimeChecker.hasNoOverlapWithOtherEvents(event, tasks.getTasks())) {
+                ui.showTaskAdded(tasks.addTask(event), tasks);
+            } else {
+                throw new PandaException("OverlappingEvents", "");
+            }
         }
         fileManager.saveTasks(tasks, ui);
     }

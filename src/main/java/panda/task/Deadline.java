@@ -1,8 +1,9 @@
 package panda.task;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 import panda.PandaException;
 
@@ -12,7 +13,7 @@ import panda.PandaException;
  */
 public class Deadline extends Task {
     protected String type;
-    protected LocalDate deadline;
+    protected LocalDateTime deadline;
 
     /**
      * Constructs Deadline object based on info from user.
@@ -25,9 +26,11 @@ public class Deadline extends Task {
         super(description);
         this.type = "[D]";
         try {
-            this.deadline = LocalDate.parse(deadline);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm")
+                    .withResolverStyle(ResolverStyle.STRICT);
+            this.deadline = LocalDateTime.parse(deadline, formatter);
         } catch (DateTimeParseException e) {
-            throw new PandaException("wrongDateFormat", "");
+            throw new PandaException("wrongDateTimeFormat", "");
         }
     }
 
@@ -41,11 +44,11 @@ public class Deadline extends Task {
     public Deadline(String status, String description, String deadline) {
         super(status, description);
         this.type = "[D]";
-        this.deadline = LocalDate.parse(deadline, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+        this.deadline = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
     }
 
     private String formatDate() {
-        return deadline.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+        return deadline.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
     }
 
     public String writeToFile() {

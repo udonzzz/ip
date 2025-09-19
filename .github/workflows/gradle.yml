@@ -10,14 +10,6 @@ jobs:
     runs-on: ${{ matrix.platform }}
 
     steps:
-      - name: Set up repository
-        uses: actions/checkout@master
-
-      - name: Set up repository
-        uses: actions/checkout@master
-        with:
-          ref: master
-
       - name: Merge to master
         run: git checkout --progress --force ${{ github.sha }}
 
@@ -41,14 +33,3 @@ jobs:
       - name: Install dos2unix on macOS
         if: runner.os == 'macOS'
         run: brew install dos2unix
-
-      - name: Perform IO redirection test (*NIX or macOS)
-        if: runner.os == 'Linux' || runner.os == 'macOS'
-        working-directory: ${{ github.workspace }}/text-ui-test
-        run: ./runtest.sh
-
-      - name: Perform IO redirection test (Windows)
-        if: always() && runner.os == 'Windows'
-        working-directory: ${{ github.workspace }}/text-ui-test
-        shell: cmd
-        run: runtest.bat

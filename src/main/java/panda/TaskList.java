@@ -73,6 +73,10 @@ public class TaskList {
         return tasks.size();
     }
 
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
+
     /**
      * Returns String representation of all the tasks in the list in a format
      * to be saved to text file.
@@ -94,7 +98,7 @@ public class TaskList {
     public String generateListWithKeywords(String keyword) {
         return IntStream.range(0, size())
                 .filter(i -> tasks.get(i).hasKeyword(keyword))
-                .mapToObj(i -> "\n" + (i + 1) + "." + tasks.get(i).toString())
+                .mapToObj(i -> "\n" + (i + 1) + ". " + tasks.get(i).toString())
                 .collect(Collectors.collectingAndThen(
                         Collectors.joining(),
                         str -> str.isEmpty() ? "\nThere are no matching tasks in your list" : str));
@@ -103,7 +107,7 @@ public class TaskList {
     @Override
     public String toString() {
         return IntStream.range(0, size())
-                .mapToObj(i -> "\n" + (i + 1) + "." + tasks.get(i).toString())
+                .mapToObj(i -> "\n" + (i + 1) + ". " + tasks.get(i).toString())
                 .collect(Collectors.collectingAndThen(
                         Collectors.joining(),
                         str -> str.isEmpty() ? "\nList is empty" : str));

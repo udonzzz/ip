@@ -8,15 +8,19 @@ import java.util.List;
  */
 public class PandaException extends Exception {
     private static final ArrayList<String> errorList = new ArrayList<>(List.of("list", "mark",
-            "unmark", "delete", "find", "todo", "deadline", "event", "wrongDateFormat"));
+            "unmark", "delete", "find", "todo", "deadline", "event", "wrongDateTimeFormat",
+            "MismatchedDateTime", "OverlappingEvents"));
 
     private static final String UNKNOWN_ACTION = "I don't know such an action..."
             + "\nType \"help\" if you are forgot the list of actions!";
-    private static final String WRONG_DATE_FORMAT = "Please provide a valid date in the format yyyy-MM-dd!";
+    private static final String WRONG_DATETIME_FORMAT = "Please provide a valid date in the format yyyy-MM-dd HH:mm!";
+    private static final String MISMATCHED_DATETIME = "Starting dateTime for event cannot be "
+            + "equal to or later than ending DateTime!";
+    private static final String OVERLAPPING_EVENTS = "Events cannot have overlapping timings!";
     private static final String DEADLINE_TASK_FORMAT = "Please provide the deadline as such: \n"
-            + "deadline (insert description) /by (insert deadline)";
+            + "deadline (insert description) /by (insert deadline dateTime)";
     private static final String EVENT_TASK_FORMAT = "Please provide the event as such: \n"
-            + "event (insert description) /from (insert start date) /to (insert end date)";
+            + "event (insert description) /from (insert start dateTime) /to (insert end dateTime)";
     private static final String UNKNOWN_ERROR = "OH NO SOMETHING BAD HAS HAPPENED!!!";
 
     public PandaException(String action, String description) {
@@ -31,8 +35,14 @@ public class PandaException extends Exception {
             return action + " needs to be provided an integer as such: \n"
                     + action + " (insert list no. of task to " + action + ")";
         }
-        if (action.equals("wrongDateFormat")) {
-            return WRONG_DATE_FORMAT;
+        if (action.equals("wrongDateTimeFormat")) {
+            return WRONG_DATETIME_FORMAT;
+        }
+        if (action.equals("MismatchedDateTime")) {
+            return MISMATCHED_DATETIME;
+        }
+        if (action.equals("OverlappingEvents")) {
+            return OVERLAPPING_EVENTS;
         }
         if (description.isEmpty()) {
             return "The description of a " + action + " cannot be empty.";
