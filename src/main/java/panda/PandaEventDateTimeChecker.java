@@ -25,10 +25,10 @@ public class PandaEventDateTimeChecker {
         for (Task task : tasks) {
             if (task instanceof Event listEvent) {
                 if (isEqualOrAfter(event.getStart(), listEvent.getEnd())) {
-                    return true;
+                    continue;
                 }
                 if (isEqualOrAfter(listEvent.getStart(), event.getEnd())) {
-                    return true;
+                    continue;
                 }
                 return false;
             }
